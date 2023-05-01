@@ -1,20 +1,18 @@
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class AppConfig {
+    public static void main(String[] args) {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
+
+        Driver driver1 = context.getBean("driver1", Driver.class);
+        Driver driver2 = context.getBean("driver2", Driver.class);
+        Driver driver3 = context.getBean("driver3", Driver.class);
+        System.out.println(driver1);
+        System.out.println(driver2);
+        System.out.println(driver3);
+        driver1.startCar();
+        driver2.startBus();
+        driver3.startPickUp();
+        context.close();
+    }
 }
-
-/**Чтобы выполнить задание, следуйте алгоритму:
-
- Создайте Spring-проект. Добавьте нужные зависимости для работы с бинами, контекстом и аннотациями.
- Создайте абстрактный класс Transport и его наследников Car, Bus, Pickup.
-
- Создайте класс Driver с полем «транспорт» типа Transport.
-
- Сконфигурируйте Spring таким образом, чтобы он создал бин для каждого класса-наследника Transport.
-
- Сразу после создания бинов распечатайте в консоль <тип транспорта> готов к работе.
-
- Реализуйте из класса Driver Spring-бин так, чтобы в Spring Сontext у вас находилось три бина типа Driver
-    (по одному для каждого типа транспорта).
-
- Распечатайте в удобочитаемом виде в консоли все три Spring-бина типа Driver.
- */
